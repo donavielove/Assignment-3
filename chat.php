@@ -4,7 +4,7 @@ ob_start();
 header("Content-type: application/json");
 date_default_timezone_set('UTC');
 //connect to database
-$db = mysqli_connect('mariadb', 'cs431sXX', 'password', 'cs431sXX');
+$db = mysqli_connect('mariadb', 'cs431s31', 'aoma2Gei', 'cs431s31');
 if (mysqli_connect_errno()) {
    echo '<p>Error: Could not connect to database.<br/>
    Please try again later.</p>';
