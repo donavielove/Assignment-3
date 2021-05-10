@@ -37,12 +37,27 @@ $(document).on('ready', function() {
 
 $('#sendMessageBtn').on('click', function(event) {
     event.preventDefault();
-    
-    //var  username = $('#userName').val();
+
+    var username = $('#userName').val();
     var message = $('#chatMessage').val();
+    var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+
+    if(userName == '' || pattern.test(username)){
+        document.getElementById("errorMessage").innerHTML = '*Error* Enter an alphanumeric names Please!\n';
+        return;
+    } else{
+        document.getElementById('errorMessage').innerHTML = "";
+    }
+    if (message == '' || pattern.test(message)){
+        document.getElementById('messageErrorMessage').innerHTML = "*Error* Enter an alphanumeric name please!\n";
+        return;
+    } else{
+        document.getElementById('messageErrorMessage').innerHTML = "";
+    }
+
     
     $.post('chat.php', {
-	//'username' : username,
+	    'userName' : username,
         'message' : message
     }, function(result) {
         
@@ -54,7 +69,7 @@ $('#sendMessageBtn').on('click', function(event) {
         } else {
             console.log("Message sent!");
 
-	    //$('#userName').val('');
+	        $('#userName').val('');
             $('#chatMessage').val('');
         }
     });
