@@ -11,11 +11,11 @@ var pollServer = function() {
             var chatBubble;
             
             if(this.sent_by == 'self') {
-                chatBubble = $('<div class="row bubble-sent pull-right">' + this.username+ '&nbsp' +
+                chatBubble = $('<div class="row bubble-sent pull-right">' + this.userName+ '&nbsp' +
                                this.message + 
                                '</div><div class="clearfix"></div>');
             } else {
-                chatBubble = $('<div class="row bubble-recv">' + this.username + '&nbsp' +
+                chatBubble = $('<div class="row bubble-recv">' + this.userName + '&nbsp' +
                                this.message + 
                                '</div><div class="clearfix"></div>');
             }
@@ -38,7 +38,7 @@ $(document).on('ready', function() {
 $('#sendMessageBtn').on('click', function(event) {
     event.preventDefault();
 
-    var username = $('#userName').val();
+    var userName = $('#userName').val();
     var message = $('#chatMessage').val();
     var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
@@ -57,7 +57,7 @@ $('#sendMessageBtn').on('click', function(event) {
 
     
     $.post('chat.php', {
-	    'userName' : username,
+	    'userName' : userName,
         'message' : message
     }, function(result) {
         

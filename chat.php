@@ -58,9 +58,12 @@ try {
         case 'send':
             $message = isset($_POST['message']) ? $_POST['message'] : '';            
             $message = strip_tags($message);
+            $sent_by = isset($_POST['userName']) ? $_POST['userName'] : ''; 
+            $sent_by = strip_tags($sent_by);
+
             $query = "INSERT INTO chatlog (message, sent_by, date_created) VALUES(?, ?, ?)";
             $stmt = $db->prepare($query);
-            $stmt->bind_param('ssi', $message, $session_id, $currentTime); 
+            $stmt->bind_param('ssi', $message,$sent_by, $session_id, $currentTime); 
             $stmt->execute(); 
             print json_encode(['success' => true]);
             exit;
