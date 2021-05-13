@@ -10,7 +10,7 @@ var pollServer = function() {
             
             var chatBubble;
             
-            if(this.sent_by == 'self') {
+            if(this.sent_by == this.userName) {
                 chatBubble = $('<div class="row bubble-sent pull-right">' + this.userName+ '&nbsp' +
                                this.message + 
                                '</div><div class="clearfix"></div>');
