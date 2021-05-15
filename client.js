@@ -10,12 +10,14 @@ var pollServer = function() {
             
             var chatBubble;
             
-            if(this.sent_by == this.userName) {
-                chatBubble = $('<div class="row bubble-sent pull-right">' + this.userName+ '&nbsp' +
+            if(this.sent_by == 'self') {
+                var addColor = '<div class="row bubble-sent pull-right" style="background: #' + this.color + '; border-color: #' + this.color + '; --color: #' + this.color + '; color: white">';
+                chatBubble = $(addColor + 'Me:' +
                                this.message + 
                                '</div><div class="clearfix"></div>');
             } else {
-                chatBubble = $('<div class="row bubble-recv">' + this.userName + '&nbsp' +
+                var cColor = 'div class="row bubble-recv" style = "background: #' + this.color + '; --color: #' + this.color + '; color:white">';
+                chatBubble = $( cColor + this.userName + ': ' +
                                this.message + 
                                '</div><div class="clearfix"></div>');
             }
@@ -38,22 +40,22 @@ $(document).on('ready', function() {
 $('#sendMessageBtn').on('click', function(event) {
     event.preventDefault();
 
-    var userName = $('#userName').val();
-    var message = $('#chatMessage').val();
-    var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+     var userName = $('#userName').val();
+     var message = $('#chatMessage').val();
+    // var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
-    if(userName == '' || pattern.test(username)){
-        document.getElementById("errorMessage").innerHTML = '*Error* Enter an alphanumeric names Please!\n';
-        return;
-    } else{
-        document.getElementById('errorMessage').innerHTML = "";
-    }
-    if (message == '' || pattern.test(message)){
-        document.getElementById('messageErrorMessage').innerHTML = "*Error* Enter an alphanumeric name please!\n";
-        return;
-    } else{
-        document.getElementById('messageErrorMessage').innerHTML = "";
-    }
+    // if(userName == '' || pattern.test(userName)){
+    //     document.getElementById("errorMessage").innerHTML = '*Error* Enter an alphanumeric names Please!\n';
+    //     return;
+    // } else{
+    //     document.getElementById('errorMessage').innerHTML = "";
+    // }
+    // if (message == '' || pattern.test(message)){
+    //     document.getElementById('messageErrorMessage').innerHTML = "*Error* Enter an alphanumeric name please!\n";
+    //     return;
+    // } else{
+    //     document.getElementById('messageErrorMessage').innerHTML = "";
+    // }
 
     
     $.post('chat.php', {

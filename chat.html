@@ -143,11 +143,10 @@
             </div>
             <div class="panel-footer">
                 <div class="input-group">
-                  <form id="addUser">
                     <label>Your Name:</label>
                     <input type="text" name="userName" id="userName" class="name"/>
-                    
-                </form>
+			              <br>
+                    <label>Message:</label>
                     <input type="text" class="form-control" id="chatMessage" placeholder="Send a message here..."/>
                     <span class="input-group-btn">
                         <button id="sendMessageBtn" class="btn btn-primary has-spinner" type="button">
@@ -161,5 +160,31 @@
     </div>    
     <script src="//code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="client.js"></script>
+    <script>
+        var randomNum = Math.floor(Math.random() * 6) + 1;
+        switch(randomNum){
+          case 1:
+            color='#000000'
+            break;
+          case 2:
+            color='#FF0000'
+            break;
+          case 3:
+            color='#00FF00'
+            default:
+            break;
+          case 4:
+            color='#0000FF'
+            break;
+          case 5:
+             color='#00FFFF'
+             break;
+          case 6:
+            color='#FF00FF'
+            break;
+        }
+
+        document.getElementById('exa').value = color;
+    </script>
     </body>
 </html>
