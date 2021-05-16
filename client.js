@@ -1,3 +1,28 @@
+       //generate color randomly
+       var randomNum = Math.floor(Math.random() * 6) + 1;
+        switch(randomNum){
+          case 1:
+            color='#000000'
+            break;
+          case 2:
+            color='#FF0000'
+            break;
+          case 3:
+            color='#FF00FF'
+            break;
+          case 4:
+            color='#0000FF'
+            break;
+          case 5:
+             color='#00FFFF'
+             break;
+          case 6:
+            color='#00FF00'
+            break;
+            default:
+        }
+
+
 var pollServer = function () {
     $.get('chat.php', function (result) {
 
@@ -42,36 +67,20 @@ $('#sendMessageBtn').on('click', function (event) {
 
     var userName = $('#userName').val();
     var message = $('#chatMessage').val();
-    // var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
-
-    // if(userName == '' || pattern.test(userName)){
-    //     document.getElementById("errorMessage").innerHTML = '*Error* Enter an alphanumeric names Please!\n';
-    //     return;
-    // } else{
-    //     document.getElementById('errorMessage').innerHTML = "";
-    // }
-    // if (message == '' || pattern.test(message)){
-    //     document.getElementById('messageErrorMessage').innerHTML = "*Error* Enter an alphanumeric name please!\n";
-    //     return;
-    // } else{
-    //     document.getElementById('messageErrorMessage').innerHTML = "";
-    // }
-
+    var color = input.get('color');
 
     $.post('chat.php', {
         'userName': userName,
-        'message': message
+        'message': message,
+        'color': color
     }, function (result) {
 
         $('#sendMessageBtn').toggleClass('active');
-
 
         if (!result.success) {
             alert("There was an error sending your message");
         } else {
             console.log("Message sent!");
-            //get the username value
-	        $('#userName').val('');
             $('#chatMessage').val('');
         }
     });
