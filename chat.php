@@ -43,7 +43,7 @@ try {
                if($session_id == $chat['sent_by']) {
                   $chat['sent_by'] = 'self';
                } else {
-                  $chat['sent_by'] = 'other';
+                  $chat['sent_by'] = 'username';
                }
              
                $newChats[] = $chat;
@@ -61,10 +61,10 @@ try {
             $message = isset($_POST['message']) ? $_POST['message'] : '';            
             $message = strip_tags($message);
             $username = isset($_POST['userName']) ? $_POST['userName'] : ''; 
-            $username = strip_tags($username);
+            $username = strip_tags($username);  
             $color = isset($_POST['color']) ? $_POST['color'] : ''; 
-            $color = strip_tags($color);
-            $query = "INSERT INTO chatlog (message, sent_by, date_created, username, color) VALUES(?,?,?,?,?)";
+            $color = strip_tags($color);  
+            $query = "INSERT INTO chat (session_id,message, sent_by, date_created, username, color) VALUES(?,?,?,?,?,?)";
             $stmt = $db->prepare($query);
             $stmt->bind_param($session_id, $message, $sent_by, $currentTime, $username,$color); 
             $stmt->execute(); 
