@@ -70,8 +70,8 @@ $('#sendMessageBtn').on('click', function (event) {
             alert("There was an error sending your message");
         } else {
             console.log("Message sent!");
-
-            $('#userName').val('');
+            //get the username value
+	        $('#userName').val('');
             $('#chatMessage').val('');
         }
     });
