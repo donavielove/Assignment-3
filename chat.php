@@ -64,7 +64,7 @@ try {
             $color = strip_tags($color);
             $query = "INSERT INTO chatlog (message, sent_by, date_created, username, color) VALUES(?,?,?,?,?)";
             $stmt = $db->prepare($query);
-            $stmt->bind_param($session_id, $message, $sent_by, $currentTime, $username,$color); 
+            $stmt->bind_param($session_id, $message, $sent_by, $currentTime, $username, $color); 
             $stmt->execute(); 
             print json_encode(['success' => true]);
             exit;
