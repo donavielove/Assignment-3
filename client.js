@@ -9,7 +9,7 @@ var pollServer = function() {
         $.each(result.messages, function(idx) {
             
             var chatBubble;
-            
+            // Assign the color to the chat bubble and display the username
             if(this.sent_by == 'self') {
                 var addColor = '<div class="row bubble-sent pull-right" style="background: #' + this.color + '; border-color: #' + this.color + '; --color: #' + this.color + '; color: white">';
                 chatBubble = $(addColor + 'Me:' +
@@ -70,7 +70,7 @@ $('#sendMessageBtn').on('click', function(event) {
             alert("There was an error sending your message");
         } else {
             console.log("Message sent!");
-
+            //get the username value
 	        $('#userName').val('');
             $('#chatMessage').val('');
         }

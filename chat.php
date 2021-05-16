@@ -56,6 +56,8 @@ try {
            ]);
            exit;
         case 'send':
+
+            //get the username, message and color and store into the database
             $message = isset($_POST['message']) ? $_POST['message'] : '';            
             $message = strip_tags($message);
             $username = isset($_POST['userName']) ? $_POST['userName'] : ''; 
