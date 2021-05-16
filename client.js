@@ -68,22 +68,6 @@ $('#sendMessageBtn').on('click', function (event) {
     var color = input.get('color');
 
 
-    var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
-    
-    //error checking if there is an error 
-    if(username == '' || pattern.test(username)){
-        document.getElementById('errorMessage').innerHTML = "*Error* Enter an alphanumeric name please!\n";
-        return;
-    }else{
-        document.getElementById('errorMessage').innerHTML = "";
-    }
-    if(message == '' || pattern.test(message)){
-        document.getElementById('messageErrorMessage').innerHTML = "*Error* Enter an alphanumeric message please!\n";
-        return;
-    }else{
-        document.getElementById('messageErrorMessage').innerHTML = "";
-    }
-
     $.post('chat.php', {
         'userName': userName,
         'message': message,
