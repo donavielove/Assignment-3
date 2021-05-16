@@ -35,16 +35,14 @@ var pollServer = function () {
 
             var chatBubble;
 
-            if (this.sent_by == 'self') {
-                var addColor = '<div class="row bubble-sent pull-right" style="background: #' + this.color + '; border-color: #' + this.color + '; --color: #' + this.color + '; color: white">';
-                chatBubble = $(addColor + 'Me:' +
-                    this.message +
-                    '</div><div class="clearfix"></div>');
+            if(this.username == 'self') {
+                chatBubble = $('<div class="row bubble-sent pull-right" style="background:' + this.color + '">' + 
+                               'Me: ' + this.message + 
+                               '</div><div class="clearfix"></div>');
             } else {
-                var cColor = 'div class="row bubble-recv" style = "background: #' + this.color + '; --color: #' + this.color + '; color:white">';
-                chatBubble = $(cColor + this.userName + ': ' +
-                    this.message +
-                    '</div><div class="clearfix"></div>');
+                chatBubble = $('<div class="row bubble-recv" style="background:' + this.color + '">' + 
+                               this.username + ': ' + this.message + 
+                               '</div><div class="clearfix"></div>');
             }
 
             $('#chatPanel').append(chatBubble);
