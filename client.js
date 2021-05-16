@@ -63,9 +63,26 @@ $(document).on('ready', function () {
 $('#sendMessageBtn').on('click', function (event) {
     event.preventDefault();
 
-    var userName = $('#userName').val();
+    var username = $('#username').val();
     var message = $('#chatMessage').val();
     var color = input.get('color');
+
+
+    var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+    
+    //error checking if there is an error 
+    if(username == '' || pattern.test(username)){
+        document.getElementById('errorMessage').innerHTML = "*Error* Enter an alphanumeric name please!\n";
+        return;
+    }else{
+        document.getElementById('errorMessage').innerHTML = "";
+    }
+    if(message == '' || pattern.test(message)){
+        document.getElementById('messageErrorMessage').innerHTML = "*Error* Enter an alphanumeric message please!\n";
+        return;
+    }else{
+        document.getElementById('messageErrorMessage').innerHTML = "";
+    }
 
     $.post('chat.php', {
         'userName': userName,

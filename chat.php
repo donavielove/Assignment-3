@@ -60,7 +60,7 @@ try {
             //get the username, message and color and store into the database
             $message = isset($_POST['message']) ? $_POST['message'] : '';            
             $message = strip_tags($message);
-            $username = isset($_POST['userName']) ? $_POST['userName'] : ''; 
+            $username = isset($_POST['username']) ? $_POST['username'] : ''; 
             $color = isset($_POST['color']) ? $_POST['color'] : ''; 
             //modify query to add username and color 
             $query = "INSERT INTO chat (message, sent_by, date_created, username, color) VALUES(?,?,?,?,?)";
