@@ -1,26 +1,26 @@
-       //generate color randomly
-       var randomNum = Math.floor(Math.random() * 6) + 1;
-        switch(randomNum){
-          case 1:
-            color='#000000'
-            break;
-          case 2:
-            color='#FF0000'
-            break;
-          case 3:
-            color='#FF00FF'
-            break;
-          case 4:
-            color='#0000FF'
-            break;
-          case 5:
-             color='#00FFFF'
-             break;
-          case 6:
-            color='#00FF00'
-            break;
-            default:
-        }
+//generate color randomly
+var randomNum = Math.floor(Math.random() * 6) + 1;
+switch (randomNum) {
+    case 1:
+        color = '#000000'
+        break;
+    case 2:
+        color = '#FF0000'
+        break;
+    case 3:
+        color = '#FF00FF'
+        break;
+    case 4:
+        color = '#0000FF'
+        break;
+    case 5:
+        color = '#00FFFF'
+        break;
+    case 6:
+        color = '#00FF00'
+        break;
+    default:
+}
 
 
 var pollServer = function () {
