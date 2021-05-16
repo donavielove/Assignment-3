@@ -1,4 +1,5 @@
 //generate color randomly
+var color
 var randomNum = Math.floor(Math.random() * 6) + 1;
 switch (randomNum) {
     case 1:
@@ -65,11 +66,9 @@ $('#sendMessageBtn').on('click', function (event) {
 
     var username = $('#username').val();
     var message = $('#chatMessage').val();
-    var color = input.get('color');
-
 
     $.post('chat.php', {
-        'userName': userName,
+        'username': username,
         'message': message,
         'color': color
     }, function (result) {
