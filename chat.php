@@ -32,10 +32,10 @@ try {
     $action = isset($_SERVER['REQUEST_METHOD']) && ($_SERVER['REQUEST_METHOD'] == 'POST') ? 'send' : 'poll';
     switch($action) {
         case 'poll':
-           $query = "SELECT * FROM chatlog WHERE date_created >= ".$lastPoll;
+           $query = "SELECT * FROM chat WHERE date_created >= ".$lastPoll;
            $stmt = $db->prepare($query);
            $stmt->execute();
-           $stmt->bind_result($id, $message, $session_id, $date_created);
+           $stmt->bind_result($id,$username, $color, $message, $session_id, $date_created);
            $result = get_result( $stmt);
            $newChats = [];
            while($chat = array_shift($result)) {
