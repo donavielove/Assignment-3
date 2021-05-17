@@ -35,17 +35,14 @@ try {
            $query = "SELECT * FROM chat WHERE date_created >= ".$lastPoll;
            $stmt = $db->prepare($query);
            $stmt->execute();
-           $stmt->bind_result($id,$username, $color, $message, $session_id, $date_created);
+           $stmt->bind_result($id, $message, $sent_by, $date_created, $username, $user_color);
            $result = get_result( $stmt);
            $newChats = [];
            while($chat = array_shift($result)) {
                
-               if($session_id == $chat['sent_by']) {
-                  $chat['sent_by'] = 'self';
-               } else {
-                  $chat['sent_by'] = 'other';
-               }
-             
+               if($session_id == $chat['sent_by']) 
+                  $chat['username'] = 'self';
+               
                $newChats[] = $chat;
             }
            $_SESSION['last_poll'] = $currentTime;
@@ -60,12 +57,24 @@ try {
             //get the username, message and color and store into the database
             $message = isset($_POST['message']) ? $_POST['message'] : '';            
             $message = strip_tags($message);
-            $username = isset($_POST['username']) ? $_POST['username'] : ''; 
-            $color = isset($_POST['color']) ? $_POST['color'] : ''; 
+            $user_name = isset($_POST['username']) ? $_POST['username'] : '';
+            $bubbleColor = '#'.substr(str_shuffle('ABCDEF0123456789'), 0, 6); 
+
+            // Adding color to user
+            $colorQuery = "SELECT username, user_color FROM chat";
+            $colorResult = $db->query($colorQuery);
+            while($pair = $colorResult->fetch_assoc()){
+
+              if($user_name == $pair["username"]){
+                $bubbleColor = $pair["user_color"];
+              }
+
+            }
+
             //modify query to add username and color 
-            $query = "INSERT INTO chat (message, sent_by, date_created, username, color) VALUES(?,?,?,?,?)";
+            $query = "INSERT INTO chat (message, sent_by, date_created, username, user_color) VALUES(?,?,?,?,?)";
             $stmt = $db->prepare($query);
-            $stmt->bind_param($session_id, $message, $sent_by, $currentTime, $username, $color); 
+            $stmt->bind_param('ssi', $message, $session_id, $currentTime, $user_name, $bubbleColor); 
             $stmt->execute(); 
             print json_encode(['success' => true]);
             exit;

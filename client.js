@@ -1,4 +1,3 @@
-
 var pollServer = function () {
     $.get('chat.php', function (result) {
 
@@ -12,11 +11,11 @@ var pollServer = function () {
             var chatBubble;
 
             if(this.username == 'self') {
-                chatBubble = $('<div class="row bubble-sent pull-right" style="background:' + this.color + '">' + 
+                chatBubble = $('<div class="row bubble-sent pull-right" style="background:' + this.user_color+ '">' + 
                                'Me: ' + this.message + 
                                '</div><div class="clearfix"></div>');
             } else {
-                chatBubble = $('<div class="row bubble-recv" style="background:' + this.color + '">' + 
+                chatBubble = $('<div class="row bubble-recv" style="background:' + this.user_color + '">' + 
                                this.username + ': ' + this.message + 
                                '</div><div class="clearfix"></div>');
             }
@@ -39,13 +38,12 @@ $(document).on('ready', function () {
 $('#sendMessageBtn').on('click', function (event) {
     event.preventDefault();
 
-    var username = $('#username').val();
+    var username = $('#newname').val();
     var message = $('#chatMessage').val();
 
     $.post('chat.php', {
-        'username': username,
         'message': message,
-        'color': color
+        'username': username
     }, function (result) {
 
         $('#sendMessageBtn').toggleClass('active');
