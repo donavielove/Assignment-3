@@ -82,7 +82,7 @@ try {
 
             $query = "INSERT INTO chat (message, sent_by, date_created, username, user_color) VALUES(?, ?, ?, ?, ?)";
             $stmt = $db->prepare($query);
-            $stmt->bind_param('sssis', $message, $session_id, $currentTime, $user_name, $bubbleColor);
+            $stmt->bind_param('sssss', $message, $session_id, $currentTime, $user_name, $bubbleColor);
             $stmt->execute();
             print json_encode(['success' => true]);
             exit;
