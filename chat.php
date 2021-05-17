@@ -56,8 +56,10 @@ try {
 
         case 'send':
             $message = isset($_POST['message']) ? $_POST['message'] : '';
-            $message = strip_tags($message);
             $user_name = isset($_POST['username']) ? $_POST['username'] : '';
+            // Prevent HTML injection
+            $message = strip_tags($message);
+            $user_name =strip_tags($user_name);
 
             // Creating random colors for chat bubbles
             $randomNum = rand(1, 5);
